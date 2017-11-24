@@ -3,8 +3,33 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <style type="text/css">
+
+        canvas{
+            margin:10px;
+            padding:10px;
+            border:1px solid #ccc;}
+    </style>
 </head>
 <body>
 
+<canvas id="can" width="200" height="200">
+
+</canvas>
+
+
+
 </body>
+<script type="text/javascript">
+
+    var canvas=document.getElementById("can");
+    if(canvas.getContext){
+        var ctx=canvas.getContext("2d");
+        ctx.fillStyle="red";
+        ctx.fillRect(30,30,60,60);
+        ctx.fillStyle="rgba(0,0,100,0.6)";
+        ctx.fillRect(50,50,60,60);
+    }
+
+</script>
 </html>
