@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style type="text/css">
+        canvas {
+            display: block;
+            width: 600px;
+            height: 600px;
+            margin: 0 auto;
+            border: 1px solid #cccccc;
+        }
+
+    </style>
+</head>
+<body>
+
+<canvas id="can" width="600" height="600px">
+    您的浏览器不支持canvas功能
+
+</canvas>
+
+</body>
+</html>
+<script type="text/javascript">
+    var canvas = document.getElementById("can");
+    if (canvas.getContext) {
+        var ctx = canvas.getContext("2d");
+
+//        01 练习绘制填充矩形和边框矩形
+        ctx.fillStyle = "red";
+        ctx.fillRect(20, 20, 60, 60)
+        ctx.strokeStyle = "blue";
+        ctx.strokeRect(40, 40, 60, 60)
+
+//练习 02 绘制三角形使用知识点 moveTo lineTO fill
+        ctx.moveTo(160, 40)
+        ctx.lineTo(200, 10);
+        ctx.lineTo(200, 70);
+        ctx.fill();
+        ctx.beginPath();
+        ctx.moveTo(250, 40);
+        ctx.lineTo(300, 10);
+        ctx.lineTo(300, 70);
+        ctx.closePath();
+        ctx.stroke();
+        ctx.beginPath();
+
+
+//        笑脸 使用知识点  arc moveTo
+
+
+        ctx.arc(260, 260, 180, 0, Math.PI * 2, true);
+        ctx.moveTo(260,160);
+        ctx.arc(260,300,90,0,Math.PI,false);
+        ctx.moveTo(160,100);
+        ctx.arc(190,200,30,0,Math.PI*2,true);
+//        ctx.moveTo()
+        ctx.arc(340,200,30,0,Math.PI*2,true);
+
+        ctx.stroke();
+
+
+
+    }
+
+</script>
