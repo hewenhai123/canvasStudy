@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+</body>
+</html>
+
+<script type="text/javascript">
+    function Element(tagName, props, children) { //创建一个元素类
+        this.tagName = tagName;
+        this.props = props;
+        this.children = children;
+    }
+    Element.prototype.render = function () { //在类的原型上添加渲染方法，这个方法会创建一个虚拟的DOM
+        var el = document.createElement(this.tagName);//创建一个tagName 元素
+        var props = this.props; //定义变量，将私有的属性，this.tagName复制给props
+        for (var propName in props) { //循环属性并且为当前的元素设置属性
+            var propValue = props[propName];
+            el.setAttribute(propName, propValue);
+        }
+        var children = this.children || []; //判断当前对象是否含有子集，有则使用，否则等于空数组
+        children.forEach(function (child) {//循环子集
+            var childEl = (child instanceof Element) ? child.render() : document.createTextNode(child);
+            //判断当前的对象是不是Element的实例，是递归执行rander命令，否则，认为是字符串，执行创建字符串命名
+            el.appendChild(childEl)//把当前实例已经创建的虚拟DOM添加到父子元素
+        });
+        return el // 返回创建的虚拟DOM树
+    }
+
+    var ul = new Element('ul', {id: 'list', class: 'ok'}, [
+        new Element('li', {class: 'item'}, ['doiasfjasdop']),
+        new Element('li', {class: 'item2'}, ['doiaUI噢UI有dop']),
+        new Element('li', {class: 'item3'}, ['doias大法师的sdop']),
+        new Element('li', {class: 'item4'}, ['doias54问题问题dop']),
+        new Element('li', {class: 'item5'}, ['让他也特']),
+    ]);
+    var ulDOm = ul.render();
+    console.log(ulDOm)
+    document.querySelector("body").appendChild(ulDOm);
+
+
+</script>
